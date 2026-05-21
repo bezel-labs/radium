@@ -26,7 +26,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"]
+      "@radium/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": ["src"]

@@ -1,13 +1,16 @@
 {
   "name": "radium",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "web": "npm run dev --workspace=@radium/web",
+    "storybook": "npm run dev --workspace=@radium/storybook",
+    "build:storybook": "npm run build --workspace=@radium/storybook"
   },
   "devDependencies": {
     "prettier": "^3.8.1",

@@ -1,4 +1,4 @@
-import { Button } from "@workspace/ui/components/button"
+import { Button } from "@radium/ui/components/button"
 
 export function App() {
   return (

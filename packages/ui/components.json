@@ -11,11 +11,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@workspace/ui/components",
-    "utils": "@workspace/ui/lib/utils",
-    "hooks": "@workspace/ui/hooks",
-    "lib": "@workspace/ui/lib",
-    "ui": "@workspace/ui/components"
+    "components": "@radium/ui/components",
+    "utils": "@radium/ui/lib/utils",
+    "hooks": "@radium/ui/hooks",
+    "lib": "@radium/ui/lib",
+    "ui": "@radium/ui/components"
   },
   "rtl": false,
   "menuColor": "default",
