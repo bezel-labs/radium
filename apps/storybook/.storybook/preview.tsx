@@ -1,5 +1,8 @@
 import type { Preview } from "@storybook/react-vite"
 
+import { Toaster } from "@radium/ui/components/sonner"
+import { TooltipProvider } from "@radium/ui/components/tooltip"
+
 import "@radium/ui/globals.css"
 
 const preview: Preview = {
@@ -18,6 +21,14 @@ const preview: Preview = {
       test: "todo",
     },
   },
+  decorators: [
+    (Story) => (
+      <TooltipProvider>
+        <Story />
+        <Toaster />
+      </TooltipProvider>
+    ),
+  ],
 }
 
 export default preview
