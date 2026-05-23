@@ -1,0 +1,127 @@
+#storybook-root,
+.sb-show-main,
+.sb-main-padded,
+.sbdocs,
+.sbdocs-wrapper,
+.sbdocs-content,
+.docs-story,
+.sbdocs-preview,
+.storybook-theme-wrapper {
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+#storybook-root,
+.sb-show-main,
+.sb-main-padded,
+.sbdocs-wrapper {
+  min-height: 100vh;
+}
+
+.storybook-theme-wrapper {
+  min-height: 100%;
+  width: 100%;
+  color-scheme: light;
+}
+
+.dark .storybook-theme-wrapper,
+.storybook-theme-wrapper.dark {
+  color-scheme: dark;
+}
+
+.sbdocs :where(
+  .sbdocs-title,
+  .sbdocs-subtitle,
+  .sbdocs-h1,
+  .sbdocs-h2,
+  .sbdocs-h3,
+  .sbdocs-h4,
+  .sbdocs-p,
+  .sbdocs-li
+) {
+  color: var(--foreground) !important;
+}
+
+.sbdocs-preview,
+.docs-story,
+.docs-story > div,
+.sbdocs-preview > div {
+  border-color: var(--border) !important;
+  background: var(--background) !important;
+}
+
+.docblock-argstable,
+.docblock-argstable :where(thead, tbody, tr, th, td) {
+  border-color: var(--border) !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+.docblock-argstable :where(td, td *, label, span) {
+  color: var(--foreground) !important;
+}
+
+.docblock-argstable code {
+  border-color: var(--border) !important;
+  background: var(--muted) !important;
+  color: var(--foreground) !important;
+}
+
+.docblock-argstable :where(input, select, textarea, label) {
+  color: var(--foreground) !important;
+}
+
+.docblock-argstable :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border-color: var(--input) !important;
+  background: var(--background) !important;
+}
+
+.docblock-argstable :where(input[type="radio"], input[type="checkbox"]) {
+  accent-color: var(--primary);
+}
+
+.docblock-argstable button {
+  border-color: var(--input) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--secondary) !important;
+  color: var(--secondary-foreground) !important;
+  box-shadow: inset 0 0 0 1px var(--border) !important;
+}
+
+.docblock-argstable button:hover {
+  border-color: var(--ring) !important;
+  background: var(--accent) !important;
+  color: var(--accent-foreground) !important;
+}
+
+.docblock-argstable button:focus,
+.docblock-argstable button:focus-visible {
+  border-color: var(--ring) !important;
+  box-shadow:
+    inset 0 0 0 1px var(--ring),
+    0 0 0 3px color-mix(in oklch, var(--ring) 35%, transparent) !important;
+  outline: none !important;
+}
+
+.docblock-argstable label:has(input[type="radio"]:checked),
+.docblock-argstable label:has(input[type="checkbox"]:checked) {
+  color: var(--foreground) !important;
+}
+
+.docblock-argstable label:has(input[role="switch"]) {
+  border-color: var(--border) !important;
+  background: var(--secondary) !important;
+  color: var(--muted-foreground) !important;
+}
+
+.docblock-argstable label:has(input[role="switch"]) span {
+  background: transparent !important;
+  color: var(--muted-foreground) !important;
+}
+
+.docblock-argstable label:has(input[role="switch"]:not(:checked)) span:first-of-type,
+.docblock-argstable label:has(input[role="switch"]:checked) span:last-of-type {
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+  box-shadow: inset 0 0 0 1px var(--border);
+}

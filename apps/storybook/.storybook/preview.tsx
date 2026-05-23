@@ -6,6 +6,15 @@ import { CONTEXTS } from "@radium/ui/constants/contexts"
 
 import "@radium/ui/globals.css"
 
+import "./preview.css"
+
+function applyThemeClass(wrapperClass: string) {
+  document.documentElement.classList.remove(...CONTEXTS)
+  document.documentElement.classList.add(wrapperClass)
+  document.body.classList.remove(...CONTEXTS)
+  document.body.classList.add(wrapperClass)
+}
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -37,9 +46,11 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const wrapperClass = (context.globals.context as string) ?? "default"
+      applyThemeClass(wrapperClass)
+
       return (
         <TooltipProvider>
-          <div className={wrapperClass}>
+          <div className={`storybook-theme-wrapper ${wrapperClass}`}>
             <Story />
             <Toaster />
           </div>
