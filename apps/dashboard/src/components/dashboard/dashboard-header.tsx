@@ -1,4 +1,4 @@
-import { Bell, Moon, Search, Sun } from "lucide-react"
+import { Bell, Search } from "lucide-react"
 
 import { Badge } from "@radium/ui/components/badge"
 import { Button } from "@radium/ui/components/button"
@@ -15,12 +15,7 @@ import { Kbd } from "@radium/ui/components/kbd"
 import { Separator } from "@radium/ui/components/separator"
 import { SidebarTrigger } from "@radium/ui/components/sidebar"
 
-import { useTheme } from "@/components/theme-provider.tsx"
-
 export function DashboardHeader() {
-  const { theme } = useTheme()
-  const isDark = theme === "dark"
-
   return (
     <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur supports-backdrop-filter:bg-background/60">
       <SidebarTrigger className="-ml-1" />
@@ -49,12 +44,6 @@ export function DashboardHeader() {
       </div>
 
       <div className="ml-auto flex items-center gap-2 md:ml-2">
-        <div className="hidden items-center gap-1.5 text-xs text-muted-foreground lg:flex">
-          {isDark ? <Moon className="size-3.5" /> : <Sun className="size-3.5" />}
-          <span>Press</span>
-          <Kbd>d</Kbd>
-          <span>to toggle</span>
-        </div>
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="size-4" />
           <Badge
