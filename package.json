@@ -9,6 +9,7 @@
     "format": "turbo format",
     "typecheck": "turbo typecheck",
     "dashboard": "npm run dev --workspace=@radium/dashboard",
+    "marketing": "npm run dev --workspace=@radium/marketing",
     "auth": "npm run dev --workspace=@radium/auth",
     "storybook": "npm run dev --workspace=@radium/storybook",
     "build:storybook": "npm run build --workspace=@radium/storybook"
