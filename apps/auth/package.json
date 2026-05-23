@@ -4,12 +4,12 @@
   "type": "module",
   "private": false,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --strictPort",
     "build": "tsc -b && vite build",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview --strictPort"
   },
   "dependencies": {
     "@radium/ui": "*",
