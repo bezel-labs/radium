@@ -1,5 +1,5 @@
 {
-  "name": "@radium/web",
+  "name": "@radium/dashboard",
   "version": "0.0.1",
   "type": "module",
   "private": false,
