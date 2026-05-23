@@ -4,19 +4,29 @@ import * as ResizablePrimitive from "react-resizable-panels"
 
 import { cn } from "@radium/ui/lib/utils"
 
+type ResizablePanelGroupProps = ResizablePrimitive.GroupProps & {
+  direction?: ResizablePrimitive.GroupProps["orientation"]
+}
+
 function ResizablePanelGroup({
   className,
+  direction,
+  orientation,
+  style,
   ...props
-}: ResizablePrimitive.GroupProps) {
+}: ResizablePanelGroupProps) {
   return (
-    <ResizablePrimitive.Group
+    <div
       data-slot="resizable-panel-group"
-      className={cn(
-        "flex h-full w-full aria-[orientation=vertical]:flex-col",
-        className
-      )}
-      {...props}
-    />
+      className={cn("h-full w-full", className)}
+      style={style}
+    >
+      <ResizablePrimitive.Group
+        orientation={orientation ?? direction}
+        className="h-full w-full"
+        {...props}
+      />
+    </div>
   )
 }
 

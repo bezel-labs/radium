@@ -6,6 +6,9 @@ import {
   ResizablePanelGroup,
 } from "@radium/ui/components/resizable"
 
+const panelClassName =
+  "flex h-full items-center justify-center bg-muted/35 text-sm font-medium text-foreground"
+
 const meta = {
   title: "Components/Resizable",
   component: ResizablePanelGroup,
@@ -20,18 +23,14 @@ export const Horizontal: Story = {
   render: () => (
     <ResizablePanelGroup
       direction="horizontal"
-      className="h-48 w-96 rounded-lg border"
+      className="h-80 w-[min(72rem,90vw)] rounded-lg border"
     >
-      <ResizablePanel defaultSize={50}>
-        <div className="flex h-full items-center justify-center text-sm">
-          One
-        </div>
+      <ResizablePanel defaultSize="50%">
+        <div className={panelClassName}>One</div>
       </ResizablePanel>
       <ResizableHandle />
-      <ResizablePanel defaultSize={50}>
-        <div className="flex h-full items-center justify-center text-sm">
-          Two
-        </div>
+      <ResizablePanel defaultSize="50%">
+        <div className={panelClassName}>Two</div>
       </ResizablePanel>
     </ResizablePanelGroup>
   ),
@@ -41,18 +40,14 @@ export const Vertical: Story = {
   render: () => (
     <ResizablePanelGroup
       direction="vertical"
-      className="h-72 w-96 rounded-lg border"
+      className="h-[32rem] w-[min(72rem,90vw)] rounded-lg border"
     >
-      <ResizablePanel defaultSize={50}>
-        <div className="flex h-full items-center justify-center text-sm">
-          Top
-        </div>
+      <ResizablePanel defaultSize="50%">
+        <div className={panelClassName}>Top</div>
       </ResizablePanel>
       <ResizableHandle />
-      <ResizablePanel defaultSize={50}>
-        <div className="flex h-full items-center justify-center text-sm">
-          Bottom
-        </div>
+      <ResizablePanel defaultSize="50%">
+        <div className={panelClassName}>Bottom</div>
       </ResizablePanel>
     </ResizablePanelGroup>
   ),
@@ -62,18 +57,14 @@ export const WithHandle: Story = {
   render: () => (
     <ResizablePanelGroup
       direction="horizontal"
-      className="h-48 w-96 rounded-lg border"
+      className="h-80 w-[min(72rem,90vw)] rounded-lg border"
     >
-      <ResizablePanel defaultSize={30}>
-        <div className="flex h-full items-center justify-center text-sm">
-          Sidebar
-        </div>
+      <ResizablePanel defaultSize="30%">
+        <div className={panelClassName}>Sidebar</div>
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={70}>
-        <div className="flex h-full items-center justify-center text-sm">
-          Content
-        </div>
+      <ResizablePanel defaultSize="70%">
+        <div className={panelClassName}>Content</div>
       </ResizablePanel>
     </ResizablePanelGroup>
   ),
