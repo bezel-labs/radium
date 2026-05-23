@@ -112,7 +112,7 @@ import {
 
 import { cn } from "@radium/ui/lib/utils"
 
-const DASHBOARD_URL = "http://localhost:5000"
+const DASHBOARD_URL = "http://localhost:5002"
 
 const trustedCompanies = [
   "Northwind",
