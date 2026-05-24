@@ -3,6 +3,12 @@ node_modules
 .pnp
 .pnp.js
 
+# Lockfile is intentionally not committed: the StackBlitz WebContainer that runs this repo for
+# the Token Designer preview needs to do its own platform-appropriate resolution to fetch the
+# wasm32-wasi rolldown binding (npm bug npm/cli#4828). Re-add a lockfile here if/when WebContainer
+# install behavior improves.
+package-lock.json
+
 # Local env files
 .env
 .env.local
