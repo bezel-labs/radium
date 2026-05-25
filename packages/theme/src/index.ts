@@ -1,1 +1,1 @@
-export { appendContext } from "./append-context"
+export { applyContext } from "./apply-context"

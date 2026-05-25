@@ -2,7 +2,7 @@ import type { Preview } from "@storybook/react-vite"
 
 import { Toaster } from "@radium/ui/components/sonner"
 import { TooltipProvider } from "@radium/ui/components/tooltip"
-import { CONTEXTS } from "@radium/ui/constants/contexts"
+import { CONTEXTS, CURRENT_CONTEXT } from "@radium/ui/constants/contexts"
 
 import "@radium/ui/globals.css"
 
@@ -31,11 +31,13 @@ const preview: Preview = {
       test: "todo",
     },
   },
+  initialGlobals: {
+    context: CURRENT_CONTEXT,
+  },
   globalTypes: {
     context: {
       name: "Context",
       description: "Theme context applied to the story wrapper",
-      defaultValue: "default",
       toolbar: {
         icon: "paintbrush",
         items: CONTEXTS.map((value) => ({ value, title: value })),
@@ -45,7 +47,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const wrapperClass = (context.globals.context as string) ?? "default"
+      const wrapperClass = (context.globals.context as string) ?? CURRENT_CONTEXT
       applyThemeClass(wrapperClass)
 
       return (

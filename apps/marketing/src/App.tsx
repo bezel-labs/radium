@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import { Area, AreaChart } from "recharts"
 import { toast } from "sonner"
 import {
@@ -421,13 +421,6 @@ export function App() {
   const [demoOpen, setDemoOpen] = useState(false)
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
-  const dashboardSrc = useMemo(() => {
-    const theme = new URLSearchParams(window.location.search).get("theme")
-    return theme
-      ? `${DASHBOARD_URL}/?theme=${encodeURIComponent(theme)}`
-      : `${DASHBOARD_URL}/`
-  }, [])
-
   const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setDemoOpen(false)
@@ -621,7 +614,7 @@ export function App() {
                 <AspectRatio ratio={16 / 9}>
                   {import.meta.env.DEV ? (
                     <iframe
-                      src={dashboardSrc}
+                      src={`${DASHBOARD_URL}/`}
                       title="Cadence Audio dashboard preview"
                       className="h-full w-full rounded-lg border bg-muted/40"
                       loading="lazy"

@@ -10,7 +10,10 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./append-context": "./src/append-context.ts"
+    "./apply-context": "./src/apply-context.ts"
+  },
+  "dependencies": {
+    "@radium/ui": "*"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
