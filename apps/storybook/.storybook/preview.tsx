@@ -2,7 +2,7 @@ import type { Preview } from "@storybook/react-vite"
 
 import { Toaster } from "@radium/ui/components/sonner"
 import { TooltipProvider } from "@radium/ui/components/tooltip"
-import { CONTEXTS, CURRENT_CONTEXT } from "@radium/ui/constants/contexts"
+import { CONTEXTS, CURRENT_CONTEXT } from "@radium/theme"
 
 import "@radium/ui/globals.css"
 

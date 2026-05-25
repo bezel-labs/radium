@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@radium/theme": "*",
     "@radium/ui": "*",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
