@@ -1,2 +1,4 @@
 export { applyContext } from "./apply-context"
-export { CONTEXTS, CURRENT_CONTEXT, type Context } from "./contexts"
+export { CONTEXT_OPTIONS } from "./context-options"
+export { CURRENT_CONTEXT } from "./current-context"
+export type { Context } from "./context"

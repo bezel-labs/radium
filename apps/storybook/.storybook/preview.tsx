@@ -2,16 +2,16 @@ import type { Preview } from "@storybook/react-vite"
 
 import { Toaster } from "@radium/ui/components/sonner"
 import { TooltipProvider } from "@radium/ui/components/tooltip"
-import { CONTEXTS, CURRENT_CONTEXT } from "@radium/theme"
+import { CONTEXT_OPTIONS, CURRENT_CONTEXT } from "@radium/theme"
 
 import "@radium/ui/globals.css"
 
 import "./preview.css"
 
 function applyThemeClass(wrapperClass: string) {
-  document.documentElement.classList.remove(...CONTEXTS)
+  document.documentElement.classList.remove(...CONTEXT_OPTIONS)
   document.documentElement.classList.add(wrapperClass)
-  document.body.classList.remove(...CONTEXTS)
+  document.body.classList.remove(...CONTEXT_OPTIONS)
   document.body.classList.add(wrapperClass)
 }
 
@@ -40,7 +40,7 @@ const preview: Preview = {
       description: "Theme context applied to the story wrapper",
       toolbar: {
         icon: "paintbrush",
-        items: CONTEXTS.map((value) => ({ value, title: value })),
+        items: CONTEXT_OPTIONS.map((value) => ({ value, title: value })),
         dynamicTitle: true,
       },
     },

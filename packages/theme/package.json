@@ -11,7 +11,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./apply-context": "./src/apply-context.ts",
-    "./contexts": "./src/contexts.ts"
+    "./context-options": "./src/context-options.ts",
+    "./current-context": "./src/current-context.ts"
   },
   "dependencies": {
     "@radium/ui": "*"
