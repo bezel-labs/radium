@@ -23,6 +23,11 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-docs')
   ],
   "framework": getAbsolutePath('@storybook/react-vite'),
+  core: {
+    // Storybook manager's host check rejects "*.csb.app" subdomains otherwise.
+    // Wildcards aren't supported; sandbox IDs are per-fork, so allow all hosts.
+    allowedHosts: true
+  },
   viteFinal: async (config) =>
     mergeConfig(config, {
       server: { allowedHosts: [".csb.app"] }
