@@ -9,10 +9,12 @@ export default defineConfig({
   server: {
     port: 5001,
     strictPort: true,
+    allowedHosts: [".csb.app"],
   },
   preview: {
     port: 5001,
     strictPort: true,
+    allowedHosts: [".csb.app"],
   },
   resolve: {
     alias: {
