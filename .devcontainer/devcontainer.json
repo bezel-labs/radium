@@ -1,7 +1,0 @@
-{
-  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
-  "name": "Radium",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-  "postCreateCommand": "npm install",
-  "forwardPorts": [5001, 5002, 5003, 5004]
-}
