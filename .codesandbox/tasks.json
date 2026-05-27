@@ -9,12 +9,36 @@
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
-    "dev": {
-      "name": "dev",
-      "command": "npm run dev",
+    "auth": {
+      "name": "Auth",
+      "command": "npm run auth",
+      "runAtStart": true,
+      "preview": {
+        "port": 5001
+      }
+    },
+    "dashboard": {
+      "name": "Dashboard",
+      "command": "npm run dashboard",
       "runAtStart": true,
       "preview": {
         "port": 5002
+      }
+    },
+    "marketing": {
+      "name": "Marketing",
+      "command": "npm run marketing",
+      "runAtStart": true,
+      "preview": {
+        "port": 5003
+      }
+    },
+    "storybook": {
+      "name": "Storybook",
+      "command": "npm run storybook",
+      "runAtStart": true,
+      "preview": {
+        "port": 5004
       }
     }
   }
