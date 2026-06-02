@@ -1,0 +1,60 @@
+{
+  "name": "radium-context",
+  "version": "0.0.0",
+  "type": "module",
+  "private": false,
+  "description": "Runtime theme/context switching for CSS that defines context scopes (e.g. :root / .dark / .light). Discovers contexts from the loaded CSS, applies + persists the choice, and ships a headless hook plus a drop-in dropdown.",
+  "keywords": [
+    "theme",
+    "theme-switcher",
+    "dark-mode",
+    "css-variables",
+    "design-tokens",
+    "context",
+    "react"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/react": "^19.2.10",
+    "eslint": "^9.39.2",
+    "globals": "^17.2.0",
+    "jsdom": "^25.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

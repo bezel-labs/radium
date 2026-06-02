@@ -103,6 +103,7 @@ import {
 } from "@radium/ui/components/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radium/ui/components/tabs"
 import { Textarea } from "@radium/ui/components/textarea"
+import { ThemeSwitcher } from "@radium/ui/components/theme-switcher"
 import {
   Tooltip,
   TooltipContent,
@@ -525,6 +526,7 @@ export function App() {
             </NavigationMenu>
 
             <div className="ml-auto flex items-center gap-3">
+              <ThemeSwitcher />
               <DropdownMenu>
                 <DropdownMenuTrigger
                   render={

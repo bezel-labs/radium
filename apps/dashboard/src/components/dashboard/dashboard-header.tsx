@@ -14,6 +14,7 @@ import { Input } from "@radium/ui/components/input"
 import { Kbd } from "@radium/ui/components/kbd"
 import { Separator } from "@radium/ui/components/separator"
 import { SidebarTrigger } from "@radium/ui/components/sidebar"
+import { ThemeSwitcher } from "@radium/ui/components/theme-switcher"
 
 export function DashboardHeader() {
   return (
@@ -44,6 +45,7 @@ export function DashboardHeader() {
       </div>
 
       <div className="ml-auto flex items-center gap-2 md:ml-2">
+        <ThemeSwitcher />
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="size-4" />
           <Badge
