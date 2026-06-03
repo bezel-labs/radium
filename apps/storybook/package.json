@@ -11,6 +11,7 @@
   "dependencies": {
     "@radium/ui": "*",
     "radium-context": "*",
+    "radium-fonts": "*",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },

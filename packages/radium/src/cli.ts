@@ -16,6 +16,7 @@ Options:
   -o, --output <path>           Output CSS file (default: variables.css)
   -c, --config <path>           Config file (.json or .js exporting RadiumOptions)
       --contexts-output <path>  Also write a generated TS module exporting CONTEXTS
+      --fonts-output <path>     Also write a generated TS module exporting FONTS
       --color <format>          Color output: oklch | hex (default: oklch)
       --unit <mode>             Dimension unit: preserve | rem (default: preserve)
       --stdout                  Print CSS to stdout instead of writing the file
@@ -43,6 +44,7 @@ async function main(argv: string[]): Promise<void> {
       output: { type: "string", short: "o" },
       config: { type: "string", short: "c" },
       "contexts-output": { type: "string" },
+      "fonts-output": { type: "string" },
       color: { type: "string" },
       unit: { type: "string" },
       stdout: { type: "boolean" },
@@ -68,6 +70,7 @@ async function main(argv: string[]): Promise<void> {
   if (values.input) options.input = values.input
   if (values.output) options.output = values.output
   if (values["contexts-output"]) options.contextsOutput = values["contexts-output"]
+  if (values["fonts-output"]) options.fontsOutput = values["fonts-output"]
   if (values.color) options.colorFormat = values.color as RadiumOptions["colorFormat"]
   if (values.unit) options.dimensionUnit = values.unit as RadiumOptions["dimensionUnit"]
   if (values.stdout) options.write = false

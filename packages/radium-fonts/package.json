@@ -1,0 +1,46 @@
+{
+  "name": "radium-fonts",
+  "version": "0.0.0",
+  "type": "module",
+  "private": false,
+  "description": "Dynamically load web fonts referenced by design tokens by injecting a webfont CDN stylesheet (Google Fonts by default, provider configurable).",
+  "keywords": [
+    "fonts",
+    "web-fonts",
+    "google-fonts",
+    "design-tokens",
+    "font-loading"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.2.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

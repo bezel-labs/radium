@@ -30,6 +30,7 @@ export function resolveOptions(options: RadiumOptions = {}): ResolvedOptions {
     dimensionUnit: options.dimensionUnit ?? "preserve",
     nameExtension: options.nameExtension ?? DEFAULT_NAME_EXTENSION,
     contextsOutput: options.contextsOutput ? toAbs(options.contextsOutput) : null,
+    fontsOutput: options.fontsOutput ? toAbs(options.fontsOutput) : null,
     write: options.write ?? true,
   }
 }

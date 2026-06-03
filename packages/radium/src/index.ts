@@ -3,6 +3,7 @@ import { dirname } from "node:path"
 import { resolveOptions } from "./config.js"
 import { emitCss } from "./emit.js"
 import { formatContextsModule, getContexts } from "./contexts.js"
+import { formatFontsModule, getFonts } from "./fonts.js"
 import type { DtcgNode, RadiumOptions } from "./types.js"
 
 export type {
@@ -17,6 +18,8 @@ export type {
 export { DEFAULT_CONTEXTS } from "./config.js"
 export { emitCss } from "./emit.js"
 export { getContexts, formatContextsModule, DEFAULT_CONTEXT_NAME } from "./contexts.js"
+export { getFonts, formatFontsModule } from "./fonts.js"
+export type { FontDef } from "./fonts.js"
 
 /**
  * Generate a scoped `variables.css` from a W3C DTCG tokens file.
@@ -65,6 +68,12 @@ export async function generateVariablesCss(options: RadiumOptions = {}): Promise
       const contextsModule = formatContextsModule(getContexts(tokens))
       await mkdir(dirname(resolved.contextsOutput), { recursive: true })
       await writeFile(resolved.contextsOutput, contextsModule, "utf8")
+    }
+
+    if (resolved.fontsOutput) {
+      const fontsModule = formatFontsModule(getFonts(tokens))
+      await mkdir(dirname(resolved.fontsOutput), { recursive: true })
+      await writeFile(resolved.fontsOutput, fontsModule, "utf8")
     }
   }
 

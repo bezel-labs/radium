@@ -3,11 +3,15 @@ import type { Preview } from "@storybook/react-vite"
 import { Toaster } from "@radium/ui/components/sonner"
 import { TooltipProvider } from "@radium/ui/components/tooltip"
 import { CONTEXTS } from "@radium/ui/styles/contexts"
+import { FONTS } from "@radium/ui/styles/fonts"
 import { resolveInitialContext } from "radium-context"
+import { loadFonts } from "radium-fonts"
 
 import "@radium/ui/globals.css"
 
 import "./preview.css"
+
+loadFonts([...FONTS])
 
 const CURRENT_CONTEXT = resolveInitialContext({ contexts: [...CONTEXTS] })
 

@@ -77,6 +77,11 @@ export interface RadiumOptions {
    * context names derived from the tokens). Path resolved against `cwd`. Default: none.
    */
   contextsOutput?: string
+  /**
+   * When set, also write a generated TypeScript module exporting `FONTS` (the web fonts
+   * derived from the tokens). Path resolved against `cwd`. Default: none.
+   */
+  fontsOutput?: string
   /** When `false`, return the CSS string without touching the filesystem. Default: `true`. */
   write?: boolean
 }
@@ -90,5 +95,6 @@ export interface ResolvedOptions {
   dimensionUnit: "preserve" | "rem"
   nameExtension: string
   contextsOutput: string | null
+  fontsOutput: string | null
   write: boolean
 }

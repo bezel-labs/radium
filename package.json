@@ -13,7 +13,7 @@
     "auth": "npm run dev --workspace=@radium/auth",
     "storybook": "npm run dev --workspace=@radium/storybook",
     "build:storybook": "npm run build --workspace=@radium/storybook",
-    "tokens": "npm run build --workspace=radium && radium build --input design-tokens.json --output packages/ui/src/styles/variables.css --contexts-output packages/ui/src/styles/contexts.ts"
+    "tokens": "npm run build --workspace=radium && radium build --input design-tokens.json --output packages/ui/src/styles/variables.css --contexts-output packages/ui/src/styles/contexts.ts --fonts-output packages/ui/src/styles/fonts.ts"
   },
   "devDependencies": {
     "prettier": "^3.8.1",
