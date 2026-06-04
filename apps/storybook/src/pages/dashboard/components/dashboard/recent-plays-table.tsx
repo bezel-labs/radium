@@ -16,7 +16,7 @@ import {
 } from "@radium/ui/components/table"
 import { cn } from "@radium/ui/lib/utils"
 
-import { formatDuration, RECENT_PLAYS } from "@/lib/mock-data"
+import { formatDuration, RECENT_PLAYS } from "../../lib/mock-data"
 
 export function RecentPlaysTable() {
   return (

@@ -26,7 +26,7 @@ import {
   formatStreams,
   generateSeries,
   useTickingValue,
-} from "@/lib/mock-data"
+} from "../../lib/mock-data"
 
 const sparkConfig: ChartConfig = {
   v: { label: "Value", color: "var(--color-chart-1)" },

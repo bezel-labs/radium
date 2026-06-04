@@ -18,7 +18,7 @@ import {
 } from "@radium/ui/components/table"
 import { cn } from "@radium/ui/lib/utils"
 
-import { formatStreams, TOP_PODCASTS } from "@/lib/mock-data"
+import { formatStreams, TOP_PODCASTS } from "../../lib/mock-data"
 
 const STATUS_STYLES: Record<(typeof TOP_PODCASTS)[number]["status"], string> = {
   Live: "bg-danger/15 text-danger",

@@ -32,7 +32,7 @@ const authCopy = {
 
 type AuthMode = keyof typeof authCopy
 
-export function App() {
+export function AuthPage() {
   const [mode, setMode] = React.useState<AuthMode>("signup")
   const copy = authCopy[mode]
   const isSignup = mode === "signup"

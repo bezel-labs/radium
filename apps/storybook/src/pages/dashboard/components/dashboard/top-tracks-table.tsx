@@ -27,7 +27,7 @@ import {
   generateSeries,
   TOP_TRACKS,
   useTickingTracks,
-} from "@/lib/mock-data"
+} from "../../lib/mock-data"
 
 const sparkConfig: ChartConfig = {
   v: { label: "Streams", color: "var(--color-chart-1)" },

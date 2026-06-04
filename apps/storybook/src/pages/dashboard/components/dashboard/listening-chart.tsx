@@ -26,7 +26,7 @@ import {
 } from "@radium/ui/components/chart"
 import { Tabs, TabsList, TabsTrigger } from "@radium/ui/components/tabs"
 
-import { formatStreams, generateListeningSeries } from "@/lib/mock-data"
+import { formatStreams, generateListeningSeries } from "../../lib/mock-data"
 
 const RANGES = [
   { value: "1D", points: 24, seed: 11 },

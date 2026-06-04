@@ -15,7 +15,7 @@ import {
   type ChartConfig,
 } from "@radium/ui/components/chart"
 
-import { DEVICES, formatStreams } from "@/lib/mock-data"
+import { DEVICES, formatStreams } from "../../lib/mock-data"
 
 const chartConfig = DEVICES.reduce<ChartConfig>((acc, item, i) => {
   acc[item.name] = {

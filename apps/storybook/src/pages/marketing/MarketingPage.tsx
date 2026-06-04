@@ -113,7 +113,7 @@ import {
 
 import { cn } from "@radium/ui/lib/utils"
 
-const DASHBOARD_URL = "http://localhost:5002"
+import { DashboardPage } from "../dashboard/DashboardPage"
 
 const trustedCompanies = [
   "Northwind",
@@ -417,7 +417,7 @@ function Delta({ value }: { value: number }) {
   )
 }
 
-export function App() {
+export function MarketingPage() {
   const [alertOpen, setAlertOpen] = useState(true)
   const [demoOpen, setDemoOpen] = useState(false)
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
@@ -614,16 +614,9 @@ export function App() {
               </div>
               <div className="mx-auto mt-16 w-full max-w-5xl">
                 <AspectRatio ratio={16 / 9}>
-                  {import.meta.env.DEV ? (
-                    <iframe
-                      src={`${DASHBOARD_URL}/`}
-                      title="Cadence Audio dashboard preview"
-                      className="h-full w-full rounded-lg border bg-muted/40"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <ImagePlaceholder className="h-full w-full" />
-                  )}
+                  <div className="h-full w-full overflow-hidden rounded-lg border bg-muted/40">
+                    <DashboardPage withSidebar={false} />
+                  </div>
                 </AspectRatio>
               </div>
             </div>
