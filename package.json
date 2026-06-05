@@ -8,13 +8,13 @@
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck",
-    "dashboard": "npm run dev --workspace=@radium/dashboard",
-    "marketing": "npm run dev --workspace=@radium/marketing",
-    "auth": "npm run dev --workspace=@radium/auth",
     "storybook": "npm run dev --workspace=@radium/storybook",
-    "build:storybook": "npm run build --workspace=@radium/storybook"
+    "build:storybook": "npm run build --workspace=@radium/storybook",
+    "template:build": "csb build . --ports 5004 --vm-tier Micro --name Radium",
+    "tokens": "npm run build --workspace=radium && radium build --input design-tokens.json --output packages/ui/src/styles/variables.css --contexts-output packages/ui/src/styles/contexts.ts --fonts-output packages/ui/src/styles/fonts.ts"
   },
   "devDependencies": {
+    "@codesandbox/sdk": "^2.4.2",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "turbo": "^2.8.17",
