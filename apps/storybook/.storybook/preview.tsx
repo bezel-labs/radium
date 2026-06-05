@@ -11,18 +11,6 @@ import "@radium/ui/globals.css"
 
 import "./preview.css"
 
-// Tell the embedding app (Token Designer) when a live token rebuild has finished
-// repainting, so it can drop its loading overlay precisely instead of guessing.
-// Posts to window.top so it crosses the manager + canvas iframes.
-if (import.meta.hot) {
-  const signalRepaintDone = () =>
-    window.top?.postMessage({ source: "radium", type: "hmr:done" }, "*")
-  // Fires after a CSS/JS HMR update is applied...
-  import.meta.hot.on("vite:afterUpdate", signalRepaintDone)
-  // ...and once on (re-)execution, which covers a completed full reload.
-  signalRepaintDone()
-}
-
 loadFonts([...FONTS])
 
 const CURRENT_CONTEXT = resolveInitialContext({ contexts: [...CONTEXTS] })
