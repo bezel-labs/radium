@@ -11,7 +11,7 @@
     "storybook": "npm run dev --workspace=@radium/storybook",
     "build:storybook": "npm run build --workspace=@radium/storybook",
     "template:build": "csb build . --ports 5004 --vm-tier Micro --name Radium",
-    "tokens": "npm run build --workspace=radium && radium build --input design-tokens.json --output packages/ui/src/styles/variables.css --contexts-output packages/ui/src/styles/contexts.ts --fonts-output packages/ui/src/styles/fonts.ts"
+    "tokens": "npm run build --workspace=radium && radium build"
   },
   "devDependencies": {
     "@codesandbox/sdk": "^2.4.2",

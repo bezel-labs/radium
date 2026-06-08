@@ -35,7 +35,7 @@ export type { FontDef } from "./fonts.js"
  * @example
  * await generateVariablesCss({
  *   input: "design-tokens.json",
- *   output: "packages/ui/src/styles/variables.css",
+ *   variablesOutput: "packages/ui/src/styles/variables.css",
  * })
  */
 export async function generateVariablesCss(options: RadiumOptions = {}): Promise<string> {
@@ -61,8 +61,8 @@ export async function generateVariablesCss(options: RadiumOptions = {}): Promise
   const css = emitCss(tokens, resolved)
 
   if (resolved.write) {
-    await mkdir(dirname(resolved.outputPath), { recursive: true })
-    await writeFile(resolved.outputPath, css, "utf8")
+    await mkdir(dirname(resolved.variablesOutputPath), { recursive: true })
+    await writeFile(resolved.variablesOutputPath, css, "utf8")
 
     if (resolved.contextsOutput) {
       const contextsModule = formatContextsModule(getContexts(tokens))
