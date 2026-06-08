@@ -57,7 +57,7 @@ export interface RadiumOptions {
   /** Path to the DTCG tokens file. Default: `"design-tokens.json"` (resolved from `cwd`). */
   input?: string
   /** Path to write the generated CSS. Default: `"variables.css"` (resolved from `cwd`). */
-  output?: string
+  variablesOutput?: string
   /** Base directory paths are resolved against. Default: `process.cwd()`. */
   cwd?: string
   /**
@@ -89,7 +89,7 @@ export interface RadiumOptions {
 /** Fully-resolved options (no `undefined`), produced by `resolveOptions`. */
 export interface ResolvedOptions {
   inputPath: string
-  outputPath: string
+  variablesOutputPath: string
   contexts: Record<string, string>
   colorFormat: "oklch" | "hex"
   dimensionUnit: "preserve" | "rem"

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { existsSync } from "node:fs"
 import { readFile } from "node:fs/promises"
 import { pathToFileURL } from "node:url"
 import { parseArgs } from "node:util"
@@ -13,15 +14,20 @@ Usage:
 
 Options:
   -i, --input <path>            Tokens file (default: design-tokens.json)
-  -o, --output <path>           Output CSS file (default: variables.css)
   -c, --config <path>           Config file (.json or .js exporting RadiumOptions)
+      --variables-output <path> Output CSS file (default: variables.css)
       --contexts-output <path>  Also write a generated TS module exporting CONTEXTS
       --fonts-output <path>     Also write a generated TS module exporting FONTS
       --color <format>          Color output: oklch | hex (default: oklch)
       --unit <mode>             Dimension unit: preserve | rem (default: preserve)
       --stdout                  Print CSS to stdout instead of writing the file
   -h, --help                    Show this help
+
+A radium.json file in the working directory is loaded automatically when -c is omitted.
 `
+
+/** Default config file auto-loaded from the working directory when no -c is given. */
+const DEFAULT_CONFIG_FILE = "radium.json"
 
 /** Load options from a `.json` or `.js`/`.mjs` config file. */
 async function loadConfig(path: string): Promise<RadiumOptions> {
@@ -41,8 +47,8 @@ async function main(argv: string[]): Promise<void> {
     allowPositionals: true,
     options: {
       input: { type: "string", short: "i" },
-      output: { type: "string", short: "o" },
       config: { type: "string", short: "c" },
+      "variables-output": { type: "string" },
       "contexts-output": { type: "string" },
       "fonts-output": { type: "string" },
       color: { type: "string" },
@@ -64,11 +70,16 @@ async function main(argv: string[]): Promise<void> {
     return
   }
 
-  const fileConfig = values.config ? await loadConfig(values.config) : {}
+  const configPath =
+    values.config ??
+    (existsSync(resolve(process.cwd(), DEFAULT_CONFIG_FILE))
+      ? DEFAULT_CONFIG_FILE
+      : undefined)
+  const fileConfig = configPath ? await loadConfig(configPath) : {}
 
   const options: RadiumOptions = { ...fileConfig }
   if (values.input) options.input = values.input
-  if (values.output) options.output = values.output
+  if (values["variables-output"]) options.variablesOutput = values["variables-output"]
   if (values["contexts-output"]) options.contextsOutput = values["contexts-output"]
   if (values["fonts-output"]) options.fontsOutput = values["fonts-output"]
   if (values.color) options.colorFormat = values.color as RadiumOptions["colorFormat"]
@@ -80,7 +91,7 @@ async function main(argv: string[]): Promise<void> {
   if (values.stdout) {
     process.stdout.write(css)
   } else {
-    process.stderr.write(`radium: wrote ${options.output ?? "variables.css"}\n`)
+    process.stderr.write(`radium: wrote ${options.variablesOutput ?? "variables.css"}\n`)
   }
 }
 

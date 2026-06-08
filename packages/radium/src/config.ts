@@ -9,7 +9,7 @@ export const DEFAULT_CONTEXTS: Record<string, string> = {
 }
 
 export const DEFAULT_INPUT = "design-tokens.json"
-export const DEFAULT_OUTPUT = "variables.css"
+export const DEFAULT_VARIABLES_OUTPUT = "variables.css"
 export const DEFAULT_NAME_EXTENSION = "com.tokendesigner.app"
 
 /** Apply defaults and resolve input/output paths against `cwd`. */
@@ -24,7 +24,7 @@ export function resolveOptions(options: RadiumOptions = {}): ResolvedOptions {
 
   return {
     inputPath: toAbs(options.input ?? DEFAULT_INPUT),
-    outputPath: toAbs(options.output ?? DEFAULT_OUTPUT),
+    variablesOutputPath: toAbs(options.variablesOutput ?? DEFAULT_VARIABLES_OUTPUT),
     contexts,
     colorFormat: options.colorFormat ?? "oklch",
     dimensionUnit: options.dimensionUnit ?? "preserve",
