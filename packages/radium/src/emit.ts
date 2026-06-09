@@ -2,7 +2,8 @@ import { flattenForContext } from "./collapse.js"
 import { cssNames, usesExportNames } from "./name.js"
 import { resolveReferences } from "./resolve.js"
 import { serializeValue } from "./serialize.js"
-import type { DtcgNode, ResolvedOptions } from "./types.js"
+import type { ResolvedCssOptions } from "./options.js"
+import type { DtcgNode } from "./types.js"
 
 /** An ordered map of CSS variable name → serialized value for one context. */
 type VarMap = Map<string, string>
@@ -12,7 +13,7 @@ function buildContextVars(
   tokens: DtcgNode,
   context: string,
   useExportName: boolean,
-  options: ResolvedOptions,
+  options: ResolvedCssOptions,
 ): VarMap {
   const flat = resolveReferences(flattenForContext(tokens, context))
   const vars: VarMap = new Map()
@@ -36,7 +37,7 @@ function renderBlock(selector: string, vars: Iterable<[string, string]>): string
  * `options.contexts` is the base (emitted in full); every other context emits
  * only the variables whose value differs from the base.
  */
-export function emitCss(tokens: DtcgNode, options: ResolvedOptions): string {
+export function emitCss(tokens: DtcgNode, options: ResolvedCssOptions): string {
   const contextNames = Object.keys(options.contexts)
   const useExportName = usesExportNames(
     flattenForContext(tokens, contextNames[0]!).values(),

@@ -1,7 +1,7 @@
+import type { ResolvedCssOptions } from "./options.js"
 import type {
   ColorValue,
   DimensionValue,
-  ResolvedOptions,
   TokenValue,
 } from "./types.js"
 
@@ -23,7 +23,7 @@ function round(n: number, dp: number): number {
   return Math.round(n * f) / f
 }
 
-function serializeColor(color: ColorValue, format: ResolvedOptions["colorFormat"]): string {
+function serializeColor(color: ColorValue, format: ResolvedCssOptions["colorFormat"]): string {
   if (format === "hex" && color.hex) return color.hex.toLowerCase()
 
   if (color.colorSpace === "oklch") {
@@ -40,7 +40,7 @@ function serializeColor(color: ColorValue, format: ResolvedOptions["colorFormat"
   return `color(${color.colorSpace} ${color.components.map((n) => round(n, 4)).join(" ")})`
 }
 
-function serializeDimension(dim: DimensionValue, unit: ResolvedOptions["dimensionUnit"]): string {
+function serializeDimension(dim: DimensionValue, unit: ResolvedCssOptions["dimensionUnit"]): string {
   if (unit === "rem" && dim.unit === "px") {
     return `${round(dim.value / 16, 4)}rem`
   }
@@ -55,7 +55,7 @@ function quoteFamily(name: string): string {
 }
 
 /** Serialize a resolved token value to a CSS declaration value. */
-export function serializeValue(value: TokenValue, options: ResolvedOptions): string {
+export function serializeValue(value: TokenValue, options: ResolvedCssOptions): string {
   if (isColor(value)) return serializeColor(value, options.colorFormat)
   if (isDimension(value)) return serializeDimension(value, options.dimensionUnit)
 

@@ -3,16 +3,14 @@ import { flattenForContext } from "../src/collapse.js"
 import { aliasTarget, resolveReferences } from "../src/resolve.js"
 import { serializeValue } from "../src/serialize.js"
 import { cssNames, nameFromPath, usesExportNames } from "../src/name.js"
-import type { DtcgNode, FlatToken, ResolvedOptions } from "../src/types.js"
+import type { ResolvedCssOptions } from "../src/options.js"
+import type { DtcgNode, FlatToken } from "../src/types.js"
 
-const OPTS: ResolvedOptions = {
-  inputPath: "",
-  outputPath: "",
+const OPTS: ResolvedCssOptions = {
   contexts: { $root: ":root", dark: ".dark", light: ".light" },
   colorFormat: "oklch",
   dimensionUnit: "preserve",
   nameExtension: "com.tokendesigner.app",
-  write: false,
 }
 
 describe("flattenForContext", () => {

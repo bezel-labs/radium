@@ -4,8 +4,8 @@ import { readFile } from "node:fs/promises"
 import { pathToFileURL } from "node:url"
 import { parseArgs } from "node:util"
 import { resolve } from "node:path"
-import { generateVariablesCss } from "./index.js"
-import type { RadiumOptions } from "./types.js"
+import { generateVariablesCss } from "./node.js"
+import type { RadiumOptions } from "./config.js"
 
 const USAGE = `radium — convert a W3C Design Tokens (DTCG) file into a scoped variables.css
 

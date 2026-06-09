@@ -1,7 +1,10 @@
+import { readFile } from "node:fs/promises"
 import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
 import { describe, expect, it } from "vitest"
-import { generateVariablesCss } from "../src/index.js"
+import { generateVariablesCss } from "../src/node.js"
+import { tokensToCss } from "../src/index.js"
+import type { DtcgNode } from "../src/types.js"
 
 const here = dirname(fileURLToPath(import.meta.url))
 const input = join(here, "fixtures", "tokens.json")
@@ -36,5 +39,15 @@ describe("generateVariablesCss (e2e)", () => {
     // .light overrides only neutral.foreground.
     expect(css).toContain(".light {")
     expect(css).toMatch(/\.light \{[^}]*--foreground: oklch\(0\.36 0\.044 186\.5\);/s)
+  })
+
+  it("tokensToCss (isomorphic) matches the file-based output", async () => {
+    const tokens = JSON.parse(await readFile(input, "utf8")) as DtcgNode
+    const css = tokensToCss(tokens)
+
+    expect(css).toContain(":root {")
+    expect(css).toContain("--primary: oklch(0.8 0.18 151.7);")
+    // Pure transform and the fs-based generator produce identical CSS.
+    expect(css).toBe(await generateVariablesCss({ input, write: false }))
   })
 })
