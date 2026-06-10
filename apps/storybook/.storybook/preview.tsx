@@ -4,8 +4,10 @@ import { Toaster } from "@radium/ui/components/sonner"
 import { TooltipProvider } from "@radium/ui/components/tooltip"
 import { CONTEXTS } from "@radium/ui/styles/contexts"
 import { FONTS } from "@radium/ui/styles/fonts"
-import { resolveInitialContext } from "radium-context"
+import { listenForContextMessages, resolveInitialContext } from "radium-context"
 import { loadFonts } from "radium-fonts"
+import { addons } from "storybook/preview-api"
+import { UPDATE_GLOBALS } from "storybook/internal/core-events"
 
 import "@radium/ui/globals.css"
 
@@ -14,6 +16,14 @@ import "./preview.css"
 loadFonts([...FONTS])
 
 const CURRENT_CONTEXT = resolveInitialContext({ contexts: [...CONTEXTS] })
+
+// Let a host (e.g. the Gundam editor embedding this Storybook in an iframe) drive the
+// active context live. We update Storybook's `context` global rather than the <html> class
+// so the decorator below stays the single source of truth and isn't clobbered on re-render.
+listenForContextMessages({
+  contexts: [...CONTEXTS],
+  onSet: (context) => addons.getChannel().emit(UPDATE_GLOBALS, { globals: { context } }),
+})
 
 function applyThemeClass(wrapperClass: string) {
   document.documentElement.classList.remove(...CONTEXTS)

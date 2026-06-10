@@ -14,6 +14,18 @@ export type { UseContextSwitcherOptions, ContextSwitcherState } from "./use-cont
 export { ContextSwitcher } from "./context-switcher.js"
 export type { ContextSwitcherProps } from "./context-switcher.js"
 export {
+  listenForContextMessages,
+  postContext,
+  CONTEXT_MESSAGE_SET,
+  CONTEXT_MESSAGE_READY,
+} from "./context-bridge.js"
+export type {
+  ListenForContextMessagesOptions,
+  ContextSetMessage,
+  ContextReadyMessage,
+} from "./context-bridge.js"
+export { useContextBridge } from "./use-context-bridge.js"
+export {
   DEFAULT_CONTEXT,
   type Context,
   type ContextOptions,
