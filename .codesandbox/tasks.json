@@ -1,6 +1,14 @@
 {
   // These tasks will run in order when initializing your CodeSandbox project.
+  // A clean boot (incl. `sdk.sandboxes.restart`) replays these — so pulling the
+  // latest GitHub code here makes the preview self-update on restart.
   "setupTasks": [
+    {
+      // Update to the latest pushed code before installing/building. Hard reset so
+      // a clean, fast-forwardable tree (discards any live preview-only file overrides).
+      "command": "git fetch origin && git reset --hard origin/main",
+      "name": "Pull latest"
+    },
     {
       "command": "npm i",
       "name": "Installing Dependencies"
