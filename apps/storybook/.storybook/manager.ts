@@ -1,7 +1,5 @@
 import { addons, type API } from "storybook/manager-api"
 import { themes, type ThemeVars } from "storybook/theming"
-import { CONTEXTS } from "@radium/ui/styles/contexts"
-import { listenForContextMessages } from "radium-context"
 
 /**
  * Lets a parent app that embeds this Storybook in an iframe control the
@@ -97,11 +95,21 @@ addons.register("radium/ui-control", (api) => {
     applyTarget(api, event.data)
   })
 
-  // 3) Context (theme) bridge: a parent app drives the active context. This must live
-  // in the manager (top window the parent posts to) — updating the `context` global
-  // here propagates to the nested preview iframe and re-runs its decorator.
-  listenForContextMessages({
-    contexts: [...CONTEXTS],
-    onSet: (context) => api.updateGlobals({ context }),
+  // 3) Context (theme) bridge: a parent app (e.g. the Gundam editor) drives the active
+  // context. This must live in the manager (the top window the parent posts to) —
+  // updating the `context` global here propagates to the nested preview iframe and
+  // re-runs its decorator. Handled inline so the manager bundle needs no extra deps.
+  window.addEventListener("message", (event: MessageEvent) => {
+    const data = event.data as { type?: string; context?: unknown } | null | undefined
+    if (!data || data.type !== "radium-context:set") return
+    const context = data.context
+    // The value becomes a CSS class in the preview, so allow only identifier-safe names.
+    if (typeof context !== "string" || !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(context)) return
+    api.updateGlobals({ context })
   })
+
+  // Announce readiness so the parent can send the current context without racing startup.
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: "radium-context:ready" }, "*")
+  }
 })
