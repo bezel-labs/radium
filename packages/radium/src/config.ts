@@ -28,6 +28,14 @@ export interface RadiumOptions extends CssOptions {
   fontsOutput?: string
   /** When `false`, return the CSS string without touching the filesystem. Default: `true`. */
   write?: boolean
+  /**
+   * Create/update a project `.gitignore` so the generated outputs are ignored. The
+   * entries live in a marked block, rewritten on each run so renamed outputs are
+   * cleaned up. Default: `true`.
+   */
+  gitignore?: boolean
+  /** Path to the `.gitignore` to manage. Default: `".gitignore"` (resolved from `cwd`). */
+  gitignorePath?: string
 }
 
 /** Fully-resolved options (no `undefined`), produced by {@link resolveOptions}. */
@@ -41,6 +49,8 @@ export interface ResolvedOptions {
   contextsOutput: string | null
   fontsOutput: string | null
   write: boolean
+  gitignore: boolean
+  gitignorePath: string
 }
 
 /** Apply defaults and resolve input/output paths against `cwd`. */
@@ -57,5 +67,7 @@ export function resolveOptions(options: RadiumOptions = {}): ResolvedOptions {
     contextsOutput: options.contextsOutput ? toAbs(options.contextsOutput) : null,
     fontsOutput: options.fontsOutput ? toAbs(options.fontsOutput) : null,
     write: options.write ?? true,
+    gitignore: options.gitignore ?? true,
+    gitignorePath: toAbs(options.gitignorePath ?? ".gitignore"),
   }
 }

@@ -7,11 +7,12 @@
  * browser-safe; for the pure transform use `radium`.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises"
-import { dirname } from "node:path"
-import { resolveOptions, type RadiumOptions } from "./config.js"
+import { dirname, relative, sep } from "node:path"
+import { resolveOptions, type RadiumOptions, type ResolvedOptions } from "./config.js"
 import { emitCss } from "./emit.js"
 import { formatContextsModule, getContexts } from "./contexts.js"
 import { formatFontsModule, getFonts } from "./fonts.js"
+import { mergeGitignore } from "./gitignore.js"
 import type { DtcgNode } from "./types.js"
 
 export * from "./index.js"
@@ -72,7 +73,53 @@ export async function generateVariablesCss(options: RadiumOptions = {}): Promise
       await mkdir(dirname(resolved.fontsOutput), { recursive: true })
       await writeFile(resolved.fontsOutput, fontsModule, "utf8")
     }
+
+    if (resolved.gitignore) {
+      await updateGitignore(resolved)
+    }
   }
 
   return css
+}
+
+/**
+ * Create or update the project `.gitignore` so the generated outputs are ignored.
+ * Outputs are written as paths relative to the `.gitignore`, anchored with a leading
+ * `/`. Outputs outside the `.gitignore`'s directory can't be anchored from it and are
+ * skipped with a warning. The file is only rewritten when its contents actually change.
+ */
+async function updateGitignore(resolved: ResolvedOptions): Promise<void> {
+  const dir = dirname(resolved.gitignorePath)
+  const outputs = [
+    resolved.variablesOutputPath,
+    resolved.contextsOutput,
+    resolved.fontsOutput,
+  ].filter((p): p is string => p !== null)
+
+  const entries: string[] = []
+  for (const output of outputs) {
+    const rel = relative(dir, output)
+    if (rel === "" || rel.startsWith("..")) {
+      process.stderr.write(
+        `radium: skipping .gitignore entry for "${output}" — outside ${resolved.gitignorePath}\n`,
+      )
+      continue
+    }
+    entries.push(`/${rel.split(sep).join("/")}`)
+  }
+
+  if (entries.length === 0) return
+
+  let existing = ""
+  try {
+    existing = await readFile(resolved.gitignorePath, "utf8")
+  } catch {
+    // No existing .gitignore — create one.
+  }
+
+  const next = mergeGitignore(existing, entries)
+  if (next !== existing) {
+    await mkdir(dir, { recursive: true })
+    await writeFile(resolved.gitignorePath, next, "utf8")
+  }
 }

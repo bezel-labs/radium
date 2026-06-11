@@ -21,6 +21,7 @@ Options:
       --color <format>          Color output: oklch | hex (default: oklch)
       --unit <mode>             Dimension unit: preserve | rem (default: preserve)
       --stdout                  Print CSS to stdout instead of writing the file
+      --no-gitignore            Don't create/update .gitignore for generated files
   -h, --help                    Show this help
 
 A radium.json file in the working directory is loaded automatically when -c is omitted.
@@ -54,6 +55,7 @@ async function main(argv: string[]): Promise<void> {
       color: { type: "string" },
       unit: { type: "string" },
       stdout: { type: "boolean" },
+      "no-gitignore": { type: "boolean" },
       help: { type: "boolean", short: "h" },
     },
   })
@@ -85,6 +87,7 @@ async function main(argv: string[]): Promise<void> {
   if (values.color) options.colorFormat = values.color as RadiumOptions["colorFormat"]
   if (values.unit) options.dimensionUnit = values.unit as RadiumOptions["dimensionUnit"]
   if (values.stdout) options.write = false
+  if (values["no-gitignore"]) options.gitignore = false
 
   const css = await generateVariablesCss(options)
 

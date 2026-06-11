@@ -48,6 +48,7 @@ npx radium build --config radium.config.js
 | `--color` | `oklch` | Color output: `oklch` or `hex` |
 | `--unit` | `preserve` | Dimensions: `preserve` authored unit or convert px → `rem` |
 | `--stdout` | — | Print CSS to stdout instead of writing |
+| `--no-gitignore` | — | Don't create/update `.gitignore` for generated files |
 
 ## Programmatic API
 
@@ -71,6 +72,8 @@ const css = await generateVariablesCss({
 - **`dimensionUnit`** — `"preserve"` (default) or `"rem"` (converts `px`).
 - **`nameExtension`** — `$extensions` key holding the `exportName` array. Default `"com.tokendesigner.app"`.
 - **`write`** — set `false` to return the CSS string without writing.
+- **`gitignore`** — when `true` (default), create/update a `.gitignore` so the generated outputs (`variablesOutput`, `contextsOutput`, `fontsOutput`) are ignored. Entries live in a `# radium:start`…`# radium:end` block, rewritten each run so renamed outputs are cleaned up. Set `false` to disable.
+- **`gitignorePath`** — path to the `.gitignore` to manage. Default `".gitignore"` (resolved against `cwd`).
 
 ## Naming
 
