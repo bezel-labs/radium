@@ -11,7 +11,6 @@ import {
 } from "@radium/ui/components/card"
 import { Input } from "@radium/ui/components/input"
 import { Label } from "@radium/ui/components/label"
-import { ThemeSwitcher } from "@radium/ui/components/theme-switcher"
 
 const authCopy = {
   signup: {
@@ -43,9 +42,6 @@ export function AuthPage() {
 
   return (
     <main className="relative grid min-h-svh bg-background text-foreground lg:grid-cols-[minmax(0,1fr)_minmax(420px,520px)]">
-      <div className="absolute top-4 right-4 z-10">
-        <ThemeSwitcher />
-      </div>
       <section className="hidden border-r bg-muted/30 px-10 py-10 lg:flex lg:flex-col lg:justify-between">
         <div className="flex items-center gap-2 text-sm font-medium">
           <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
