@@ -4,7 +4,7 @@ import { Toaster } from "@radium/ui/components/sonner"
 import { TooltipProvider } from "@radium/ui/components/tooltip"
 import { CONTEXTS } from "@radium/ui/styles/contexts"
 import { FONTS } from "@radium/ui/styles/fonts"
-import { loadFonts, resolveInitialContext } from "@keypuncherlabs/storybook-tools"
+import { loadFonts, resolveInitialContext } from "@keypuncherlabs/storybook-utils"
 
 import "@radium/ui/globals.css"
 
