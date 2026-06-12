@@ -7,10 +7,10 @@ import { resolve } from "node:path"
 import { generateVariablesCss } from "./node.js"
 import type { RadiumOptions } from "./config.js"
 
-const USAGE = `radium — convert a W3C Design Tokens (DTCG) file into a scoped variables.css
+const USAGE = `style-accelerator — convert a W3C Design Tokens (DTCG) file into a scoped variables.css
 
 Usage:
-  radium build [options]
+  style-accelerator build [options]
 
 Options:
   -i, --input <path>            Tokens file (default: design-tokens.json)
@@ -67,7 +67,7 @@ async function main(argv: string[]): Promise<void> {
 
   const command = positionals[0] ?? "build"
   if (command !== "build") {
-    process.stderr.write(`radium: unknown command "${command}".\n\n${USAGE}`)
+    process.stderr.write(`style-accelerator: unknown command "${command}".\n\n${USAGE}`)
     process.exitCode = 1
     return
   }
@@ -94,7 +94,7 @@ async function main(argv: string[]): Promise<void> {
   if (values.stdout) {
     process.stdout.write(css)
   } else {
-    process.stderr.write(`radium: wrote ${options.variablesOutput ?? "variables.css"}\n`)
+    process.stderr.write(`style-accelerator: wrote ${options.variablesOutput ?? "variables.css"}\n`)
   }
 }
 

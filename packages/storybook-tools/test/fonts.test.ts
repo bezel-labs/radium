@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
-import { fontsHref } from "../src/fonts-href.js"
-import { loadFonts } from "../src/load-fonts.js"
-import type { FontDef } from "../src/types.js"
+import { fontsHref } from "../src/fonts/fonts-href.js"
+import { loadFonts } from "../src/fonts/load-fonts.js"
+import type { FontDef } from "../src/fonts/types.js"
 
 const FONTS: FontDef[] = [
   { family: "Montserrat", weights: [400, 600] },

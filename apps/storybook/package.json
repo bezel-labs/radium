@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@radium/ui": "*",
-    "radium-context": "*",
-    "radium-fonts": "*",
+    "@keypuncherlabs/storybook-tools": "*",
     "lucide-react": "^1.16.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"

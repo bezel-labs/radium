@@ -14,9 +14,9 @@
       "name": "Installing Dependencies"
     },
     {
-      // radium-context / radium-fonts export from ./dist (tsc output); Storybook's
-      // Vite can't resolve them until built. @radium/ui is fine (exports point at src).
-      "command": "npm run build --workspace=radium-context --workspace=radium-fonts",
+      // @keypuncherlabs/storybook-tools exports from ./dist (tsc output); Storybook's
+      // Vite can't resolve it until built. @radium/ui is fine (exports point at src).
+      "command": "npm run build --workspace=@keypuncherlabs/storybook-tools",
       "name": "Building Packages"
     }
   ],

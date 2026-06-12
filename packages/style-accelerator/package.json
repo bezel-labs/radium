@@ -1,5 +1,5 @@
 {
-  "name": "radium",
+  "name": "@keypuncherlabs/style-accelerator",
   "version": "0.0.0",
   "type": "module",
   "private": false,
@@ -14,7 +14,7 @@
   ],
   "license": "MIT",
   "bin": {
-    "radium": "./dist/cli.js"
+    "style-accelerator": "./dist/cli.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
