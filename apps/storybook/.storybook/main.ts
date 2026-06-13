@@ -23,13 +23,17 @@ const config: StorybookConfig = {
   ],
   "framework": getAbsolutePath('@storybook/react-vite'),
   core: {
-    // Storybook manager's host check rejects "*.csb.app" subdomains otherwise.
-    // Wildcards aren't supported; sandbox IDs are per-fork, so allow all hosts.
+    // Storybook manager's host check rejects the WebContainer preview host
+    // ("*.webcontainer-api.io") otherwise. Wildcards aren't supported and the
+    // container ID is per-boot, so allow all hosts.
     allowedHosts: true
   },
   viteFinal: async (config) =>
     mergeConfig(config, {
-      server: { allowedHosts: [".csb.app"] }
+      // The live preview runs in an in-browser WebContainer, served from a
+      // dynamic "*.webcontainer-api.io" host. Vite's dev server blocks unknown
+      // hosts by default, so allow the WebContainer domain.
+      server: { allowedHosts: [".webcontainer-api.io"] }
     })
 };
 export default config;
