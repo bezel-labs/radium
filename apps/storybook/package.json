@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 5004 --exact-port",
-    "build": "storybook build",
+    "build": "storybook build --output-dir dist",
     "lint": "eslint ."
   },
   "dependencies": {

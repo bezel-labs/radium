@@ -1,0 +1,3 @@
+[build]
+  command = "npm run tokens && turbo run build --filter @radium/storybook"
+  publish = "apps/storybook/dist"
