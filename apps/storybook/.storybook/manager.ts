@@ -1,5 +1,6 @@
 import { addons, type API } from "storybook/manager-api"
 import { themes, type ThemeVars } from "storybook/theming"
+import { createLivePreviewRelay } from "@keypuncherlabs/live-preview"
 
 /**
  * Lets a parent app that embeds this Storybook in an iframe control the
@@ -21,6 +22,31 @@ import { themes, type ThemeVars } from "storybook/theming"
  */
 
 const MESSAGE_TYPE = "radium:storybook-ui"
+
+/**
+ * Origins allowed to push live CSS into the preview (see the live-preview relay
+ * below). The parent app embeds this Storybook from one of these origins; CSS
+ * from anywhere else is ignored. Defaults cover local Gundam dev; set
+ * `VITE_LIVE_PREVIEW_ORIGINS` (comma-separated) to add the production origin.
+ *
+ * Read defensively: the Storybook manager bundle is not built by Vite, so
+ * `import.meta.env` may be undefined here — we fall back to the defaults.
+ */
+const DEFAULT_LIVE_PREVIEW_ORIGINS = ["http://localhost:4200", "http://localhost:4300"]
+
+function livePreviewParentOrigins(): string[] {
+  let fromEnv: string[] = []
+  try {
+    const raw = (import.meta as { env?: Record<string, string | undefined> }).env
+      ?.VITE_LIVE_PREVIEW_ORIGINS
+    if (typeof raw === "string" && raw.trim()) {
+      fromEnv = raw.split(",").map((origin) => origin.trim()).filter(Boolean)
+    }
+  } catch {
+    // import.meta.env not available in this bundle; defaults are used.
+  }
+  return [...DEFAULT_LIVE_PREVIEW_ORIGINS, ...fromEnv]
+}
 
 type Target = "nav" | "toolbar" | "panel" | "fullscreen" | "theme"
 type ThemeName = "light" | "dark"
@@ -106,6 +132,18 @@ addons.register("radium/ui-control", (api) => {
     // The value becomes a CSS class in the preview, so allow only identifier-safe names.
     if (typeof context !== "string" || !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(context)) return
     api.updateGlobals({ context })
+  })
+
+  // 4) Live CSS bridge: the parent posts validated CSS here (the top window it
+  // can reach); relay it one hop down into the nested preview iframe, where a
+  // receiver injects it (see preview.tsx). This mirrors the context bridge above
+  // — the manager is the only window the parent can post to directly.
+  createLivePreviewRelay({
+    allowedOrigins: livePreviewParentOrigins(),
+    getTargetWindow: () =>
+      (document.getElementById("storybook-preview-iframe") as HTMLIFrameElement | null)
+        ?.contentWindow,
+    targetOrigin: window.location.origin,
   })
 
   // Announce readiness so the parent can send the current context without racing startup.

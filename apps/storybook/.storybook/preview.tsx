@@ -5,12 +5,23 @@ import { TooltipProvider } from "@radium/ui/components/tooltip"
 import { CONTEXTS } from "@radium/ui/styles/contexts"
 import { FONTS } from "@radium/ui/styles/fonts"
 import { loadFonts, resolveInitialContext } from "@keypuncherlabs/storybook-utils"
+import { startLivePreviewReceiver } from "@keypuncherlabs/live-preview"
 
 import "@radium/ui/globals.css"
 
 import "./preview.css"
 
 loadFonts([...FONTS])
+
+// Listen for live CSS pushed by a host app. The manager relays the message from
+// the parent into this preview iframe (see manager.ts), so it always arrives
+// same-origin — the receiver only trusts this document's own origin and injects
+// the validated CSS into a single <style> in <head>, cascading over component
+// styles. Started once at module load, alongside loadFonts above.
+startLivePreviewReceiver({
+  allowedOrigins: [window.location.origin],
+  styleId: "live-preview-styles",
+})
 
 const CURRENT_CONTEXT = resolveInitialContext({ contexts: [...CONTEXTS] })
 
