@@ -59,11 +59,6 @@ const preview: Preview = {
     context: {
       name: "Context",
       description: "Theme context applied to the story wrapper",
-      toolbar: {
-        icon: "paintbrush",
-        items: CONTEXTS.map((value) => ({ value, title: value })),
-        dynamicTitle: true,
-      },
     },
   },
   decorators: [
