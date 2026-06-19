@@ -109,7 +109,9 @@ addons.register("radium/ui-control", (api) => {
     const panel = boolParam("panel")
     if (nav !== undefined) api.toggleNav(nav)
     if (toolbar !== undefined) api.toggleToolbar(toolbar)
-    if (panel !== undefined) api.togglePanel(panel)
+    // Hide the addons panel by default; ?panel=true (or the toolbar / "A" shortcut /
+    // postMessage) can still reveal it.
+    api.togglePanel(panel ?? false)
     if (query.has("navSize")) api.setSizes({ navSize: Number(query.get("navSize")) })
     const theme = query.get("theme")
     if (theme === "light" || theme === "dark") applyTheme(api, theme)
