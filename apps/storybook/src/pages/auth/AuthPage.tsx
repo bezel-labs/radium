@@ -14,7 +14,7 @@ import { Label } from "@radium/ui/components/label"
 
 const authCopy = {
   signup: {
-    title: "Create a new account",
+    title: "Create an account",
     description: "Start tracking your workspace with Radium.",
     action: "Create account",
     switchPrompt: "Already a member?",
