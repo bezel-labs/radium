@@ -1,5 +1,4 @@
 {
-  "input": "design-tokens.json",
   "variablesOutput": "packages/ui/src/styles/variables.css",
   "contextsOutput": "packages/ui/src/styles/contexts.ts",
   "fontsOutput": "packages/ui/src/styles/fonts.ts"
