@@ -26,27 +26,24 @@ const MESSAGE_TYPE = "radium:storybook-ui"
 /**
  * Origins allowed to push live CSS into the preview (see the live-preview relay
  * below). The parent app embeds this Storybook from one of these origins; CSS
- * from anywhere else is ignored. Defaults cover local Gundam dev; set
- * `VITE_LIVE_PREVIEW_ORIGINS` (comma-separated) to add the production origin.
+ * from anywhere else is ignored.
  *
- * Read defensively: the Storybook manager bundle is not built by Vite, so
- * `import.meta.env` may be undefined here — we fall back to the defaults.
+ * This Storybook is shared by every Gundam stage, so all embedding origins must
+ * be listed here. The relay supports `*` as a single-DNS-label wildcard, so one
+ * `https://*.app.tokendesigner.com` entry covers the `dev` stage and every
+ * per-developer stage; prod (`app.tokendesigner.com`, no subdomain) is listed
+ * exactly. The origins mirror `GET_SITE_BASE_DOMAIN(stage)` in Gundam.
+ *
+ * These must be literals: the Storybook manager bundle is NOT built by Vite, so
+ * `import.meta.env` / `VITE_*` is unavailable here (env-based config never took
+ * effect and has been removed).
  */
-const DEFAULT_LIVE_PREVIEW_ORIGINS = ["http://localhost:4200", "http://localhost:4300"]
-
-function livePreviewParentOrigins(): string[] {
-  let fromEnv: string[] = []
-  try {
-    const raw = (import.meta as { env?: Record<string, string | undefined> }).env
-      ?.VITE_LIVE_PREVIEW_ORIGINS
-    if (typeof raw === "string" && raw.trim()) {
-      fromEnv = raw.split(",").map((origin) => origin.trim()).filter(Boolean)
-    }
-  } catch {
-    // import.meta.env not available in this bundle; defaults are used.
-  }
-  return [...DEFAULT_LIVE_PREVIEW_ORIGINS, ...fromEnv]
-}
+const LIVE_PREVIEW_PARENT_ORIGINS = [
+  "http://localhost:4200", // local Gundam dev
+  "http://localhost:4300", // local secondary
+  "https://app.tokendesigner.com", // prod
+  "https://*.app.tokendesigner.com", // dev + every per-developer stage
+]
 
 type Target = "nav" | "toolbar" | "panel" | "fullscreen" | "theme"
 type ThemeName = "light" | "dark"
@@ -141,7 +138,7 @@ addons.register("radium/ui-control", (api) => {
   // receiver injects it (see preview.tsx). This mirrors the context bridge above
   // — the manager is the only window the parent can post to directly.
   createLivePreviewRelay({
-    allowedOrigins: livePreviewParentOrigins(),
+    allowedOrigins: LIVE_PREVIEW_PARENT_ORIGINS,
     getTargetWindow: () =>
       (document.getElementById("storybook-preview-iframe") as HTMLIFrameElement | null)
         ?.contentWindow,
