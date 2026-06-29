@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "scripts": {
-    "build": "npm run tokens && turbo build",
+    "build": "npm run tokens && turbo build && rm -rf dist && cp -r apps/storybook/dist dist",
     "dev": "npm run tokens && turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
