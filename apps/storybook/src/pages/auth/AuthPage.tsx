@@ -67,7 +67,7 @@ export function AuthPage() {
         <div className="w-full max-w-sm space-y-6">
           <div className="flex items-center gap-2 lg:hidden">
             <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground">
-              R
+              Ra
             </div>
             <span className="text-sm font-medium">Radium</span>
           </div>
