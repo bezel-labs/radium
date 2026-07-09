@@ -25,9 +25,9 @@ startLivePreviewReceiver({
 
 const CURRENT_CONTEXT = resolveInitialContext({ contexts: [...CONTEXTS] })
 
-// A host (e.g. the Gundam editor) drives the active context live via the manager
-// (see manager.ts) — it updates the `context` global, which propagates here and
-// re-runs the decorator below. The decorator stays the single source of truth.
+// A host app drives the active context live via the manager (see manager.ts) —
+// it updates the `context` global, which propagates here and re-runs the
+// decorator below. The decorator stays the single source of truth.
 
 function applyThemeClass(wrapperClass: string) {
   document.documentElement.classList.remove(...CONTEXTS)

@@ -2,6 +2,7 @@
   "name": "radium",
   "version": "0.0.1",
   "private": false,
+  "license": "MIT",
   "scripts": {
     "build": "npm run tokens && turbo build && rm -rf dist && cp -r apps/storybook/dist dist",
     "dev": "npm run tokens && turbo dev",
@@ -10,11 +11,9 @@
     "typecheck": "turbo typecheck",
     "storybook": "npm run tokens && npm run dev --workspace=@radium/storybook",
     "build:storybook": "npm run tokens && npm run build --workspace=@radium/storybook",
-    "tokens": "style-accelerator build",
-    "codesandbox:template": "csb build . --ports 5004 --vm-tier Micro --name Radium"
+    "tokens": "style-accelerator build"
   },
   "devDependencies": {
-    "@codesandbox/sdk": "^2.4.2",
     "@keypuncherlabs/style-accelerator": "1.0.1",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",

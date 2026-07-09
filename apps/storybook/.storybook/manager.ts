@@ -16,34 +16,12 @@ import { createLivePreviewRelay } from "@keypuncherlabs/live-preview"
  *     For visibility targets, omit `show` to flip the current state.
  *     For "theme", omit `value` to flip between light/dark.
  *
- * postMessage is cross-origin-safe (works from a different parent origin such
- * as the CodeSandbox `*.csb.app` host); reading our own `location.search` is
- * same-origin to this iframe document.
+ * postMessage is cross-origin-safe (works from an embedding parent on a
+ * different origin); reading our own `location.search` is same-origin to this
+ * iframe document.
  */
 
 const MESSAGE_TYPE = "radium:storybook-ui"
-
-/**
- * Origins allowed to push live CSS into the preview (see the live-preview relay
- * below). The parent app embeds this Storybook from one of these origins; CSS
- * from anywhere else is ignored.
- *
- * This Storybook is shared by every Gundam stage, so all embedding origins must
- * be listed here. The relay supports `*` as a single-DNS-label wildcard, so one
- * `https://*.app.tokendesigner.com` entry covers the `dev` stage and every
- * per-developer stage; prod (`app.tokendesigner.com`, no subdomain) is listed
- * exactly. The origins mirror `GET_SITE_BASE_DOMAIN(stage)` in Gundam.
- *
- * These must be literals: the Storybook manager bundle is NOT built by Vite, so
- * `import.meta.env` / `VITE_*` is unavailable here (env-based config never took
- * effect and has been removed).
- */
-const LIVE_PREVIEW_PARENT_ORIGINS = [
-  "http://localhost:4200", // local Gundam dev
-  "http://localhost:4300", // local secondary
-  "https://app.tokendesigner.com", // prod
-  "https://*.app.tokendesigner.com", // dev + every per-developer stage
-]
 
 type Target = "nav" | "toolbar" | "panel" | "fullscreen" | "theme"
 type ThemeName = "light" | "dark"
@@ -120,8 +98,8 @@ addons.register("radium/ui-control", (api) => {
     applyTarget(api, event.data)
   })
 
-  // 3) Context (theme) bridge: a parent app (e.g. the Gundam editor) drives the active
-  // context. This must live in the manager (the top window the parent posts to) —
+  // 3) Context (theme) bridge: the host/parent app drives the active context.
+  // This must live in the manager (the top window the parent posts to) —
   // updating the `context` global here propagates to the nested preview iframe and
   // re-runs its decorator. Handled inline so the manager bundle needs no extra deps.
   window.addEventListener("message", (event: MessageEvent) => {
@@ -136,9 +114,10 @@ addons.register("radium/ui-control", (api) => {
   // 4) Live CSS bridge: the parent posts validated CSS here (the top window it
   // can reach); relay it one hop down into the nested preview iframe, where a
   // receiver injects it (see preview.tsx). This mirrors the context bridge above
-  // — the manager is the only window the parent can post to directly.
+  // — the manager is the only window the parent can post to directly. The set of
+  // parent origins allowed to push CSS defaults to `DEFAULT_PARENT_ORIGINS` in
+  // @keypuncherlabs/live-preview; pass `allowedOrigins` here to override.
   createLivePreviewRelay({
-    allowedOrigins: LIVE_PREVIEW_PARENT_ORIGINS,
     getTargetWindow: () =>
       (document.getElementById("storybook-preview-iframe") as HTMLIFrameElement | null)
         ?.contentWindow,
