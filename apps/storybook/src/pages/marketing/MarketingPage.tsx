@@ -470,7 +470,7 @@ export function MarketingPage() {
               <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                 <DatabaseZap className="size-4" />
               </span>
-              Radium Atlas
+              Radium
             </a>
 
             <NavigationMenu className="ml-4 hidden md:flex">
@@ -556,7 +556,7 @@ export function MarketingPage() {
                 />
                 <SheetContent side="right" className="w-72">
                   <SheetHeader>
-                    <SheetTitle>Radium Atlas</SheetTitle>
+                    <SheetTitle>Radium</SheetTitle>
                     <SheetDescription>
                       Secure, on-brand dashboards built with AI.
                     </SheetDescription>
@@ -1047,7 +1047,7 @@ export function MarketingPage() {
                 <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                   <DatabaseZap className="size-4" />
                 </span>
-                Radium Atlas
+                Radium
               </div>
               <p className="max-w-xs text-sm text-muted-foreground">
                 Secure, on-brand dashboards — built with AI.
@@ -1070,7 +1070,7 @@ export function MarketingPage() {
           </div>
           <Separator />
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-muted-foreground sm:flex-row md:px-6">
-            <span>© 2026 Radium Atlas. All rights reserved.</span>
+            <span>© 2026 Radium. All rights reserved.</span>
             <span className="inline-flex items-center gap-2">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-success/60" />
