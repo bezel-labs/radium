@@ -29,8 +29,8 @@ npm-debug.log*
 .DS_Store
 *.pem
 
-# radium:start (generated — do not edit)
+# bezel:start (generated — do not edit)
 /packages/ui/src/styles/variables.css
 /packages/ui/src/styles/contexts.ts
 /packages/ui/src/styles/fonts.ts
-# radium:end
+# bezel:end
