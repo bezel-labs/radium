@@ -24,6 +24,6 @@ The Storybook manager and preview ([`.storybook/manager.ts`](.storybook/manager.
 [`.storybook/preview.tsx`](.storybook/preview.tsx)) support being embedded in a host app: a parent
 page can drive the manager chrome (nav/toolbar/panel/theme) via URL query params or `postMessage`,
 and push live CSS/theme context into the preview using
-[`@keypuncherlabs/live-preview`](https://www.npmjs.com/package/@keypuncherlabs/live-preview). The
+[`@bezel-labs/crystal`](https://www.npmjs.com/package/@bezel-labs/crystal). The
 set of parent origins allowed to push CSS defaults to that package's `DEFAULT_PARENT_ORIGINS`; pass
 `allowedOrigins` to `createLivePreviewRelay` in `manager.ts` to override it for your own host.

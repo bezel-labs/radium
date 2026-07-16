@@ -12,8 +12,8 @@ showcase and a design-token build step, so components and their theming stay in 
 | [`apps/storybook`](apps/storybook) — `@radium/storybook` | A Storybook 10 app that showcases every component plus full-page examples (auth, dashboard, marketing). |
 
 Design tokens are generated into `packages/ui/src/styles` by
-[`@keypuncherlabs/style-accelerator`](https://www.npmjs.com/package/@keypuncherlabs/style-accelerator)
-from the token config in [`radium.json`](radium.json); the generated CSS/TS is consumed by the
+[`@bezel-labs/bezel-kit`](https://www.npmjs.com/package/@bezel-labs/bezel-kit)
+from the token config in [`bezel.json`](bezel.json); the generated CSS/TS is consumed by the
 component styles.
 
 ## Requirements
