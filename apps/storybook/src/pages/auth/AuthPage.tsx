@@ -45,7 +45,7 @@ export function AuthPage() {
       <section className="hidden border-r bg-muted/30 px-10 py-10 lg:flex lg:flex-col lg:justify-between">
         <div className="flex items-center gap-2 text-sm font-medium">
           <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            R
+            Ra
           </div>
           Radium
         </div>
@@ -67,7 +67,7 @@ export function AuthPage() {
         <div className="w-full max-w-sm space-y-6">
           <div className="flex items-center gap-2 lg:hidden">
             <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground">
-              Ti
+              Ra
             </div>
             <span className="text-sm font-medium">Radium</span>
           </div>

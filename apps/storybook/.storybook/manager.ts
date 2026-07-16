@@ -1,6 +1,6 @@
 import { addons, type API } from "storybook/manager-api"
 import { themes, type ThemeVars } from "storybook/theming"
-import { createLivePreviewRelay } from "@keypuncherlabs/live-preview"
+import { createLivePreviewRelay } from "@bezel-labs/crystal"
 
 /**
  * Lets a parent app that embeds this Storybook in an iframe control the
@@ -116,7 +116,7 @@ addons.register("radium/ui-control", (api) => {
   // receiver injects it (see preview.tsx). This mirrors the context bridge above
   // — the manager is the only window the parent can post to directly. The set of
   // parent origins allowed to push CSS defaults to `DEFAULT_PARENT_ORIGINS` in
-  // @keypuncherlabs/live-preview; pass `allowedOrigins` here to override.
+  // @bezel-labs/crystal; pass `allowedOrigins` here to override.
   createLivePreviewRelay({
     getTargetWindow: () =>
       (document.getElementById("storybook-preview-iframe") as HTMLIFrameElement | null)

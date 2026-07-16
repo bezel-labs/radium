@@ -9,7 +9,6 @@ import {
   Bot,
   Calendar,
   CheckCircle2,
-  DatabaseZap,
   FileText,
   Globe2,
   Image,
@@ -468,7 +467,7 @@ export function MarketingPage() {
               className="flex items-center gap-2 font-heading text-lg font-semibold"
             >
               <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <DatabaseZap className="size-4" />
+                Ra
               </span>
               Radium
             </a>
@@ -1045,7 +1044,7 @@ export function MarketingPage() {
             <div className="space-y-3">
               <div className="flex items-center gap-2 font-heading text-lg font-semibold">
                 <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <DatabaseZap className="size-4" />
+                  Ra
                 </span>
                 Radium
               </div>
