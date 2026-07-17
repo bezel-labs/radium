@@ -1,6 +1,6 @@
 import { addons, type API } from "storybook/manager-api"
 import { themes, type ThemeVars } from "storybook/theming"
-import { createLivePreviewRelay } from "@bezel-labs/crystal"
+import { createLivePreviewRelay, DEFAULT_PARENT_ORIGINS } from "@bezel-labs/crystal"
 
 /**
  * Lets a parent app that embeds this Storybook in an iframe control the
@@ -114,10 +114,20 @@ addons.register("radium/ui-control", (api) => {
   // 4) Live CSS bridge: the parent posts validated CSS here (the top window it
   // can reach); relay it one hop down into the nested preview iframe, where a
   // receiver injects it (see preview.tsx). This mirrors the context bridge above
-  // — the manager is the only window the parent can post to directly. The set of
-  // parent origins allowed to push CSS defaults to `DEFAULT_PARENT_ORIGINS` in
-  // @bezel-labs/crystal; pass `allowedOrigins` here to override.
+  // — the manager is the only window the parent can post to directly.
+  //
+  // Trusted parent origins = crystal's `DEFAULT_PARENT_ORIGINS` plus any the
+  // embedding app declares via the `allowedOrigins` query param (comma-separated,
+  // http(s) only). This keeps this open-source Storybook free of consumer-specific
+  // hosts: an embedder (e.g. a local dev server on http://localhost:4200) passes
+  // its own origin instead of us hardcoding it.
+  const extraOrigins = (query.get("allowedOrigins") ?? "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter((origin) => /^https?:\/\/[^\s,]+$/.test(origin))
+
   createLivePreviewRelay({
+    allowedOrigins: [...DEFAULT_PARENT_ORIGINS, ...extraOrigins],
     getTargetWindow: () =>
       (document.getElementById("storybook-preview-iframe") as HTMLIFrameElement | null)
         ?.contentWindow,
