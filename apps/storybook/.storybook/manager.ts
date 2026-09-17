@@ -21,6 +21,14 @@ import { createLivePreviewRelay, DEFAULT_PARENT_ORIGINS } from "@bezel-labs/crys
  * iframe document.
  */
 
+const BRAND = {
+  brandTitle: "Radium by Bezel",
+  brandUrl: "https://bezel.new/?utm_source=radium&utm_medium=referral&utm_content=storybook_brand",
+  brandTarget: "_blank",
+} as const
+
+addons.setConfig({ theme: { ...themes.light, ...BRAND } as ThemeVars })
+
 const MESSAGE_TYPE = "radium:storybook-ui"
 
 type Target = "nav" | "toolbar" | "panel" | "fullscreen" | "theme"
@@ -42,7 +50,7 @@ let currentTheme: ThemeName = "light"
 function applyTheme(api: API, value?: ThemeName) {
   const next = value ?? (currentTheme === "dark" ? "light" : "dark")
   currentTheme = next
-  api.setOptions({ theme: themes[next] as ThemeVars })
+  api.setOptions({ theme: { ...themes[next], ...BRAND } as ThemeVars })
 }
 
 function applyTarget(api: API, message: UiControlMessage) {

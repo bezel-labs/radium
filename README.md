@@ -1,5 +1,7 @@
 # Radium
 
+Built by [Bezel](https://bezel.new/?utm_source=github&utm_medium=referral&utm_content=readme), the design system platform for product teams.
+
 Radium is a [shadcn/ui](https://ui.shadcn.com)-based component library and design system,
 delivered as a Turborepo monorepo. It pairs a publishable React component package with a Storybook
 showcase and a design-token build step, so components and their theming stay in sync.

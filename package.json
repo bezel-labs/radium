@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "license": "MIT",
+  "homepage": "https://bezel.new/?utm_source=github&utm_medium=referral&utm_content=homepage",
   "scripts": {
     "build": "npm run tokens && turbo build && rm -rf dist && cp -r apps/storybook/dist dist",
     "dev": "npm run tokens && turbo dev",
