@@ -27,7 +27,7 @@ const BRAND = {
   brandTarget: "_blank",
 } as const
 
-addons.setConfig({ theme: { ...themes.light, ...BRAND } as ThemeVars })
+addons.setConfig({ theme: { ...themes.dark, ...BRAND } as ThemeVars })
 
 const MESSAGE_TYPE = "radium:storybook-ui"
 
@@ -43,9 +43,9 @@ interface UiControlMessage {
   value?: ThemeName
 }
 
-// Storybook's built-in manager theme starts light; track it so an omitted
+// The manager starts dark (see setConfig above); track it so an omitted
 // `value` can flip to the opposite.
-let currentTheme: ThemeName = "light"
+let currentTheme: ThemeName = "dark"
 
 function applyTheme(api: API, value?: ThemeName) {
   const next = value ?? (currentTheme === "dark" ? "light" : "dark")
