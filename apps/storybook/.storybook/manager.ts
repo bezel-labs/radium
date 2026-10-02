@@ -27,7 +27,24 @@ const BRAND = {
   brandTarget: "_blank",
 } as const
 
-addons.setConfig({ theme: { ...themes.dark, ...BRAND } as ThemeVars })
+// Surfaces matched to the Bezel app's dark theme so the embedded manager chrome blends into its
+// panels: `--sidebar` (oklch 0.205) for the toolbar/content and `--border` (oklch 0.269) for lines.
+const BEZEL_DARK_SURFACES: Partial<ThemeVars> = {
+  appBg: "#171717",
+  appContentBg: "#171717",
+  barBg: "#171717",
+  appBorderColor: "#262626",
+}
+
+const THEME_OVERRIDES: Record<"light" | "dark", Partial<ThemeVars>> = {
+  light: {},
+  dark: BEZEL_DARK_SURFACES,
+}
+
+const buildTheme = (name: "light" | "dark") =>
+  ({ ...themes[name], ...THEME_OVERRIDES[name], ...BRAND }) as ThemeVars
+
+addons.setConfig({ theme: buildTheme("dark") })
 
 const MESSAGE_TYPE = "radium:storybook-ui"
 
@@ -50,7 +67,7 @@ let currentTheme: ThemeName = "dark"
 function applyTheme(api: API, value?: ThemeName) {
   const next = value ?? (currentTheme === "dark" ? "light" : "dark")
   currentTheme = next
-  api.setOptions({ theme: { ...themes[next], ...BRAND } as ThemeVars })
+  api.setOptions({ theme: buildTheme(next) })
 }
 
 function applyTarget(api: API, message: UiControlMessage) {
