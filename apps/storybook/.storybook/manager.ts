@@ -29,15 +29,30 @@ const BRAND = {
 
 // Surfaces matched to the Bezel app's dark theme so the embedded manager chrome blends into its
 // panels: `--sidebar` (oklch 0.205) for the toolbar/content and `--border` (oklch 0.269) for lines.
+// Accents use the neutral gray family so the manager shows no bright blue or pink; the selected
+// row paints white text on `colorSecondary`, so it stays a mid-dark gray.
 const BEZEL_DARK_SURFACES: Partial<ThemeVars> = {
   appBg: "#171717",
   appContentBg: "#171717",
   barBg: "#171717",
   appBorderColor: "#262626",
+  appHoverBg: "#262626",
+  colorPrimary: "#737373",
+  colorSecondary: "#525252",
+  barSelectedColor: "#e5e5e5",
+  barHoverColor: "#a3a3a3",
+}
+
+const BEZEL_LIGHT_ACCENTS: Partial<ThemeVars> = {
+  appHoverBg: "#f5f5f5",
+  colorPrimary: "#737373",
+  colorSecondary: "#404040",
+  barSelectedColor: "#171717",
+  barHoverColor: "#525252",
 }
 
 const THEME_OVERRIDES: Record<"light" | "dark", Partial<ThemeVars>> = {
-  light: {},
+  light: BEZEL_LIGHT_ACCENTS,
   dark: BEZEL_DARK_SURFACES,
 }
 
